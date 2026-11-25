@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Så fungerar Claude Code</title>
+  <meta name="description" content="En enkel introduktion till Claude Code – en AI-assistent som hjälper dig att skriva och ändra kod.">
+  <style>
+    :root {
+      --bg: #faf8f5;
+      --text: #1f1d1a;
+      --muted: #5f5a52;
+      --card: #ffffff;
+      --border: #e6e1d8;
+      --accent: #c2603c;
+      --accent-soft: #f6e6de;
+      --code-bg: #2a2722;
+      --code-text: #f3efe8;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1816;
+        --text: #eeeae4;
+        --muted: #a8a196;
+        --card: #24211e;
+        --border: #38332d;
+        --accent: #e08360;
+        --accent-soft: #3a2a22;
+        --code-bg: #0f0e0d;
+        --code-text: #eeeae4;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+      font-size: 17px;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+    header { padding: 72px 0 40px; }
+    .tag {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.15; margin: 16px 0 12px; }
+    .lead { font-size: 1.15rem; color: var(--muted); margin: 0; }
+    h2 { font-size: 1.5rem; margin: 56px 0 12px; }
+    p { margin: 0 0 14px; }
+    .steps { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 12px; }
+    .steps li {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px 16px 60px;
+      position: relative;
+    }
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute; left: 18px; top: 16px;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: grid; place-items: center;
+      font-weight: 700; font-size: 14px;
+    }
+    .steps { counter-reset: step; }
+    .steps strong { display: block; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 20px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+    .card h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+    pre {
+      background: var(--code-bg); color: var(--code-text);
+      padding: 16px 18px; border-radius: 10px;
+      overflow-x: auto; font-size: 15px; margin: 16px 0;
+    }
+    code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+    .note { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 20px 0; }
+    a { color: var(--accent); }
+    footer { margin: 72px 0 40px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="tag">Introduktion</span>
+      <h1>Så fungerar Claude Code</h1>
+      <p class="lead">Claude Code är en AI-assistent som kan läsa, skriva och ändra filer på din dator. Du beskriver vad du vill ha med vanliga ord, så gör Claude jobbet och visar vad som har ändrats.</p>
+    </header>
+
+    <main>
+      <h2>Vad är Claude Code?</h2>
+      <p>Vanliga AI-chattar svarar med text som du själv måste kopiera och klistra in. Claude Code arbetar i stället direkt i dina projekt: det kan öppna filer, skapa nya, köra kommandon och testa att resultatet fungerar.</p>
+      <p>Det finns i terminalen, som en app för Mac och Windows, på webben och i kodredigerare som VS Code.</p>
+
+      <h2>Så går ett uppdrag till</h2>
+      <ol class="steps">
+        <li><strong>Du berättar vad du vill</strong>Till exempel: ”Gör en enkel hemsida om mitt företag.”</li>
+        <li><strong>Claude tittar sig omkring</strong>Det läser de filer som redan finns för att förstå sammanhanget.</li>
+        <li><strong>Claude gör en plan och utför den</strong>Filer skapas eller ändras, och kommandon körs vid behov.</li>
+        <li><strong>Du godkänner viktiga steg</strong>Innan något känsligt görs, som att publicera eller radera, frågar Claude först.</li>
+        <li><strong>Du granskar resultatet</strong>Du ser exakt vad som ändrats och kan be om justeringar.</li>
+      </ol>
+
+      <h2>Vad kan man använda det till?</h2>
+      <div class="grid">
+        <div class="card"><h3>Bygga saker</h3><p>Hemsidor, små appar, skript och verktyg, även om du inte kan programmera själv.</p></div>
+        <div class="card"><h3>Laga fel</h3><p>Klistra in ett felmeddelande så letar Claude upp orsaken och rättar den.</p></div>
+        <div class="card"><h3>Förstå kod</h3><p>Fråga vad en fil gör, så får du en förklaring på vanlig svenska.</p></div>
+        <div class="card"><h3>Sköta rutinjobb</h3><p>Byta namn på filer, uppdatera texter eller publicera på GitHub.</p></div>
+      </div>
+
+      <h2>Att komma igång</h2>
+      <p>Om du använder terminalen startar du Claude Code i den mapp du vill arbeta i:</p>
+      <pre><code>cd mitt-projekt
+claude</code></pre>
+      <p>Sedan skriver du helt enkelt vad du vill ha gjort.</p>
+
+      <div class="note">
+        <strong>Tips:</strong> Var konkret. ”Lägg till en kontaktsida med min e-post och en karta” ger bättre resultat än ”gör sidan bättre”.
+      </div>
+
+      <h2>Den här sidan</h2>
+      <p>Den här hemsidan byggdes med Claude Code och publicerades gratis med GitHub Pages. Den består av en enda fil, <code>index.html</code>.</p>
+      <p>Läs mer i den officiella dokumentationen: <a href="https://docs.claude.com/en/docs/claude-code/overview">docs.claude.com</a>.</p>
+    </main>
+
+    <footer>Skapad med Claude Code · 2026</footer>
+  </div>
+</body>
+</html>
